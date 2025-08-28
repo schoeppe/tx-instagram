@@ -68,7 +68,7 @@ class GetAuthenticationCode implements MiddlewareInterface
      */
     protected function isInstagramAuthentificationRedirect(ServerRequestInterface $request): bool
     {
-        if (!empty($request->getQueryParams()['code'])) {
+        if (count($request->getQueryParams()) === 1 && !empty($request->getQueryParams()['code'])) {
             $code = $request->getQueryParams()['code'];
             if (strlen($code) > 8) {
                 return true;
